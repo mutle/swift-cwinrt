@@ -5,6 +5,7 @@
 #include <minwindef.h>
 #include <winnt.h>
 #include <combaseapi.h> // IUnknown, CoCreateInstance
+#include <inspectable.h> // IInspectable
 #include <oleauto.h> // BSTR, Sys***String***
 #include <roapi.h> // Ro***
 #include "RestrictedErrorInfo.h" // IRestrictedErrorInfo (C definition)
@@ -16,6 +17,7 @@
 #undef FindText
 #undef GetClassName
 #undef GetObject
+#undef GetGlyphIndices
 
 #define ENABLE_WINRT_EXPERIMENTAL_TYPES
 
@@ -24,6 +26,7 @@
 
 #include "CppInteropWorkaround.h" // TODO(WIN-860): Remove workaround once C++ interop issues with WinSDK.GUID are fixed.
 #include "MemoryBuffer.h" // IMemoryBufferByteAccess (C definition)
+#include "WeakReference.h" // IWeakReference[Source] (C definition)
 #include "robuffer.h" // IBufferByteAccess (C definition)
 #include "Microsoft.Graphics.Canvas.h"
 #include "Microsoft.Graphics.Canvas.Brushes.h"
@@ -37,6 +40,8 @@
 #include "Microsoft.Graphics.Canvas.UI.Xaml.h"
 #include "Microsoft.Graphics.DirectX.h"
 #include "Microsoft.Graphics.Display.h"
+#include "Microsoft.Graphics.Imaging.h"
+#include "Microsoft.Security.Authentication.OAuth.h"
 #include "Microsoft.UI.h"
 #include "Microsoft.UI.Composition.h"
 #include "Microsoft.UI.Composition.Core.h"
@@ -77,20 +82,32 @@
 #include "Microsoft.UI.Xaml.Shapes.h"
 #include "Microsoft.UI.Xaml.XamlTypeInfo.h"
 #include "Microsoft.Web.WebView2.Core.h"
+#include "Microsoft.Windows.AI.h"
+#include "Microsoft.Windows.AI.ContentSafety.h"
+#include "Microsoft.Windows.AI.Imaging.h"
+#include "Microsoft.Windows.AI.Text.h"
 #include "Microsoft.Windows.AppLifecycle.h"
 #include "Microsoft.Windows.AppNotifications.h"
 #include "Microsoft.Windows.AppNotifications.Builder.h"
+#include "Microsoft.Windows.ApplicationModel.Background.h"
+#include "Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.h"
 #include "Microsoft.Windows.ApplicationModel.DynamicDependency.h"
 #include "Microsoft.Windows.ApplicationModel.Resources.h"
 #include "Microsoft.Windows.ApplicationModel.WindowsAppRuntime.h"
+#include "Microsoft.Windows.BadgeNotifications.h"
+#include "Microsoft.Windows.Globalization.h"
 #include "Microsoft.Windows.Management.Deployment.h"
+#include "Microsoft.Windows.Media.Capture.h"
 #include "Microsoft.Windows.PushNotifications.h"
 #include "Microsoft.Windows.Security.AccessControl.h"
+#include "Microsoft.Windows.Storage.h"
 #include "Microsoft.Windows.System.h"
 #include "Microsoft.Windows.System.Power.h"
 #include "Microsoft.Windows.Widgets.h"
 #include "Microsoft.Windows.Widgets.Feeds.Providers.h"
+#include "Microsoft.Windows.Widgets.Notifications.h"
 #include "Microsoft.Windows.Widgets.Providers.h"
+#include "Microsoft.Windows.Workloads.h"
 #include "Windows.AI.MachineLearning.h"
 #include "Windows.AI.MachineLearning.Preview.h"
 #include "Windows.ApplicationModel.h"

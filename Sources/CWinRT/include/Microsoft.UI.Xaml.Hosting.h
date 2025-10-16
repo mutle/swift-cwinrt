@@ -20,6 +20,12 @@
 
 #endif // ____x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource_FWD_DEFINED__
 
+#ifndef ____x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2_FWD_DEFINED__
+#define ____x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2_FWD_DEFINED__
+    typedef interface __x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2 __x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2;
+
+#endif // ____x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2_FWD_DEFINED__
+
 #ifndef ____x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSourceFactory_FWD_DEFINED__
 #define ____x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSourceFactory_FWD_DEFINED__
     typedef interface __x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSourceFactory __x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSourceFactory;
@@ -333,6 +339,41 @@ enum __x_ABI_CMicrosoft_CUI_CXaml_CHosting_CXamlSourceFocusNavigationReason
     
     EXTERN_C const IID IID___x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource;
 #endif /* !defined(____x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2_INTERFACE_DEFINED__)
+    #define ____x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2_INTERFACE_DEFINED__
+    typedef struct __x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2Vtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* get_ShouldConstrainPopupsToWorkArea)(__x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2* This,
+        boolean* value);
+    HRESULT (STDMETHODCALLTYPE* put_ShouldConstrainPopupsToWorkArea)(__x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2* This,
+        boolean value);
+
+        END_INTERFACE
+    } __x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2Vtbl;
+
+    interface __x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2
+    {
+        CONST_VTBL struct __x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2Vtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2;
+#endif /* !defined(____x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSource2_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSourceFactory_INTERFACE_DEFINED__)
     #define ____x_ABI_CMicrosoft_CUI_CXaml_CHosting_CIDesktopWindowXamlSourceFactory_INTERFACE_DEFINED__
