@@ -1,0 +1,4 @@
+module CWinRT {
+    header "CWinRT.h"
+    export *
+}

@@ -6,3 +6,8 @@
 C API definition used by Swift Language bindings.
 
 This project references all metadata files uses by the various swift-* projects. The CWinRT contains the C ABI definitions for all types that can be used.
+
+On Windows, the `CWinRT` module exposes the generated WinRT C API. On other
+platforms, the same product and target remain available as an empty module so
+cross-platform Swift packages can depend on it without requiring Windows SDK
+headers.

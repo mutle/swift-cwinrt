@@ -12,8 +12,12 @@ let package = Package(
         .target(
             name: "CWinRT",
             linkerSettings: [
-                .unsafeFlags(["-nostartfiles"]),
+                .unsafeFlags(["-nostartfiles"], .when(platforms: [.windows])),
             ]
+        ),
+        .testTarget(
+            name: "CWinRTTests",
+            dependencies: ["CWinRT"]
         ),
     ]
 )
