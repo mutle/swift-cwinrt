@@ -10,10 +10,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "CWinRT",
-            linkerSettings: [
-                .unsafeFlags(["-nostartfiles"], .when(platforms: [.windows])),
-            ]
+            name: "CWinRT"
         ),
         .testTarget(
             name: "CWinRTTests",
