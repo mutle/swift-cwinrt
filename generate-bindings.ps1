@@ -71,7 +71,39 @@ function Copy-Project {
             Remove-Item -Path $ProjectDir -Recurse -Force
         }
         Copy-Item -Path $OutputLocation\Sources\$ProjectName -Destination $ProjectDir -Recurse -Force
+        if ($ProjectName -eq "CWinRT") {
+            Configure-CWinRTModule -IncludePath (Join-Path $ProjectDir "include")
+        }
     }
+}
+
+function Configure-CWinRTModule {
+    param(
+        [string]$IncludePath
+    )
+
+    $HeaderPath = Join-Path $IncludePath "CWinRT.h"
+    $HeaderLines = @(Get-Content -Path $HeaderPath)
+    $PragmaIndex = [Array]::IndexOf($HeaderLines, "#pragma once")
+    if ($PragmaIndex -lt 0) {
+        throw "Unable to find #pragma once in $HeaderPath"
+    }
+
+    $GuardedHeaderLines = @()
+    $GuardedHeaderLines += $HeaderLines[0..$PragmaIndex]
+    $GuardedHeaderLines += "#if defined(_WIN32)"
+    if ($PragmaIndex + 1 -lt $HeaderLines.Count) {
+        $GuardedHeaderLines += $HeaderLines[($PragmaIndex + 1)..($HeaderLines.Count - 1)]
+    }
+    $GuardedHeaderLines += "#endif // defined(_WIN32)"
+    $GuardedHeaderLines | Set-Content -Path $HeaderPath -Encoding ascii
+
+    @(
+        "module CWinRT {"
+        "    header `"CWinRT.h`""
+        "    export *"
+        "}"
+    ) | Set-Content -Path (Join-Path $IncludePath "module.modulemap") -Encoding ascii
 }
 
 
