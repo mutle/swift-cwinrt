@@ -13,9 +13,10 @@ if (Test-Path -LiteralPath $ScratchPath) {
     throw 'Use a fresh scratch directory to rule out a previously linked CWinRT DLL.'
 }
 $root = Split-Path -Parent $PSScriptRoot
+$swiftArchitecture = if ($Architecture -eq 'arm64') { 'aarch64' } else { $Architecture }
 $arguments = @(
     '--package-path', $root, '--build-system', $BuildSystem,
-    '--arch', $Architecture, '--scratch-path', $ScratchPath
+    '--arch', $swiftArchitecture, '--scratch-path', $ScratchPath
 )
 foreach ($path in $TargetLibraryPaths) {
     $arguments += @('-Xlinker', "/LIBPATH:$path")
