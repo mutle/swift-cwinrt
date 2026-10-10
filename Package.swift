@@ -10,7 +10,11 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "CWinRT"
+            name: "CWinRT",
+            linkerSettings: [
+                // SwiftPM includes swiftrt.obj even for this C-only dynamic product.
+                .linkedLibrary("swiftCore", .when(platforms: [.windows])),
+            ]
         ),
         .testTarget(
             name: "CWinRTTests",

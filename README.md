@@ -18,6 +18,12 @@ propagate those settings to Swift consumers. On Windows this suppresses
 `swiftrt.obj`, preventing Swift DLL metadata registration and potentially crashing
 generic type or actor instantiation.
 
+The Windows target explicitly links `swiftCore`, the import library required by
+`swiftrt.obj`'s `swift_addNewDSOImage` registration entry point. This keeps a
+C-only dynamic product linkable with the native SwiftPM backend without a
+consumer-wide `/defaultlib:swiftCore.lib` workaround. The dependency is
+Windows-only; the package graph and non-Windows compatibility module are unchanged.
+
 ## Regression checks
 
 Run `python3 Tests/PackageManifestTests.py` for the lightweight source contract
@@ -39,3 +45,22 @@ job includes the SDK's architecture-matched `swiftrt.obj`. Check the final Swift
 DLL's registration support and execute the runtime test in fresh processes.
 Use a separate `--scratch-path` for isolated verification rather than reusing
 the historical build artifacts tracked in this repository.
+
+`Tests/check-windows-runtime-link.ps1` builds the dynamic product from a fresh
+scratch directory, compiles an architecture-matched load probe, loads/unloads
+the candidate DLL in three fresh processes, and runs the Swift consumer tests.
+For example, in a configured Windows compiler/runtime environment:
+
+```powershell
+.\Tests\check-windows-runtime-link.ps1 `
+    -ScratchPath C:\isolated\cwinrt-native-new-run `
+    -Architecture x86_64 -BuildSystem native
+```
+
+Use `arm64` for an ARM64 target and `swiftbuild` to check the default backend.
+On a cross-architecture host, pass the installed target MSVC and Windows SDK
+library directories through `-TargetLibraryPaths`; these must not replace the
+host manifest compiler's library environment. No global SwiftCore or startup
+suppression flag is added by the driver. Preserve the verbose product linker
+command to confirm both the target's SwiftCore import and its architecture-matched
+`swiftrt.obj`.

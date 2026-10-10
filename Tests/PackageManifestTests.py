@@ -22,6 +22,15 @@ class PackageManifestTests(unittest.TestCase):
             ),
         )
 
+    def test_links_runtime_startup_import_only_on_windows(self):
+        self.assertRegex(
+            self.manifest,
+            re.compile(
+                r'\.linkedLibrary\(\s*"swiftCore",\s*\.when\('
+                r'\s*platforms:\s*\[\.windows\]\s*\)\s*\)'
+            ),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
